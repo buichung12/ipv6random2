@@ -3,10 +3,9 @@ random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
 	echo
 }
-$x=10000
-$y=30000
-FIRST_PORT=mt_rand($x,$y)
-LAST_PORT=$FIRST_PORT+1000
+
+FIRST_PORT=10000
+LAST_PORT=11000
 
 array=(1 2 3 4 5 6 7 8 9 0 a b c d e f)
 main_interface=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
