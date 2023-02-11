@@ -3,7 +3,9 @@ random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
 	echo
 }
-random2() {rand(10000,30000)}
+
+FIRST_PORT=mt_rand(10000,30000)
+LAST_PORT=$(FIRST_PORT)+1000
 
 array=(1 2 3 4 5 6 7 8 9 0 a b c d e f)
 main_interface=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
@@ -115,8 +117,6 @@ IP6=$(curl -6 -s icanhazip.com | cut -f1-4 -d':')
 
 echo "Internal ip = ${IP4}. Exteranl sub for ip6 = ${IP6}"
 
-FIRST_PORT=$(random2)
-LAST_PORT=$(FIRST_PORT)+1000
 
 gen_data >$WORKDIR/data.txt
 gen_iptables >$WORKDIR/boot_iptables.sh
